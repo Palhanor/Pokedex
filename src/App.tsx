@@ -1,8 +1,7 @@
-// Adicionar o restante das informações relevantes no card grande => descricao, expreriencia, egg, geracao (https://axlbr.github.io/js-developer-pokedex/)
-
 // Fazer os ajustes de responsividade para desktop
+// Implementar o sistema de busca
+// => se tiver menos de 151, executar um loop fazendo as requisicoes ate acabar tudo para ir exibindo o que esta de acordo
 
-// Implementar o sistema de busca - se tiver menos de 151, executar um loop fazendo as requisicoes ate acabar tudo para ir exibindo o que esta de acordo
 // Criar filtros e ordenadores - ordena ou filtra somente o que foi carregado, e quando desce carrega mais e ja exibe filtrado ou ordenado
 // Aplicar responsividade para dar suporte a smartphone com a abordagem mobile-first
 
@@ -25,6 +24,7 @@ function App() {
 
   // Funcao para chamar mais pokemons atraves da PokeAPI
   const requestPokemons = useCallback(async () => {
+    // console.log("fazendo requisicao geral")
     try {
       // Pega os nomes dos proximos dez pokemons
       requesting.current = true;

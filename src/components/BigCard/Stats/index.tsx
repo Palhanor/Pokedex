@@ -1,6 +1,10 @@
 import { IStatsProps } from "../../../interfaces/props";
 
 export default function Stats({
+  xp,
+  height,
+  weight,
+  capture,
   hp,
   attack,
   defense,
@@ -12,6 +16,23 @@ export default function Stats({
     <div className="stats">
       <div>
         <p>
+          XP: <span>{xp}</span>
+        </p>
+        <p>
+          Capture: <span>{capture}</span>
+        </p>
+        <p>
+          Speed: <span>{speed}</span>
+        </p>
+        <p>
+          Height: <span>{height / 10} m</span>
+        </p>
+        <p>
+          Weight: <span>{weight} Kg</span>
+        </p>
+      </div>
+      <div>
+        <p>
           HP: <span>{hp}</span>
         </p>
         <p>
@@ -19,11 +40,6 @@ export default function Stats({
         </p>
         <p>
           Defense: <span>{defense}</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          Speed: <span>{speed}</span>
         </p>
         <p>
           Sp. Attack: <span>{spAttack}</span>

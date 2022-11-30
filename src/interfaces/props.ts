@@ -11,8 +11,9 @@ export interface IBigCardProps {
 }
 
 export interface IAboutProps {
-    height: number;
-    weight: number;
+    description: string;
+    generation: string;
+    habitat: string;
     abilities: {
         ability: {
             name: string;
@@ -21,6 +22,10 @@ export interface IAboutProps {
 }
 
 export interface IStatsProps {
+    xp: number;
+    height: number;
+    weight: number;
+    capture: number;
     hp: number;
     attack: number;
     defense: number;
