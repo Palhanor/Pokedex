@@ -1,14 +1,13 @@
 .card {
-  background-color: #fff;
+  background: url('../../assets/pokeball.png') #FFF no-repeat;
+  background-position: -150% -450%;
   height: 10.5rem;
   border-radius: 15px;
-  box-shadow: 2px 2px 12px rgb(232, 233, 236);
+  box-shadow: 2px 2px 14px rgb(225, 227, 231);
   cursor: pointer;
   display: flex;
-  border: 2px solid #fff;
   flex-direction: column;
   align-items: center;
-  transition: 0.1s ease-in-out;
 }
 
 .card:hover {
@@ -16,22 +15,39 @@
 }
 
 .card img {
-  margin-top: -20%;
-  height: 6rem;
+  margin-top: -15%;
+  max-height: 5rem;
+}
+
+.card .name {
+  margin: 1rem 0;
 }
 
 .card h3 {
-  margin-top: -0.6rem;
   font-size: 1.2rem;
+  display: inline;
   text-transform: capitalize;
+  margin: 0 7px 0 0;
 }
 
 .card p {
-  margin-top: -0.6rem;
+  display: inline;
   font-size: 0.9rem;
   color: rgb(124, 124, 124);
 }
 
 .selected {
-  border: 2px solid gold;
+  border: 2px solid #e80b3e;
+  box-shadow: 0 0 10px #e56180;
+  height: calc(10.5rem - 4px);
+  background-position: -160% -620%;
+}
+
+@media screen and (min-width: 1440px) {
+  .card {
+    background-position: -100% -420%;
+  }
+  .selected {
+    background-position: -110% -600%;
+  }
 }

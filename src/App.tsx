@@ -1,16 +1,18 @@
-// Adicionar a imagem da pokebola de fundo nos cards
-// Adicionar o restante das informações relevantes no card grande
-// Criar um sistema para passar o pokemon para o próximo ou anterior no card grande
-// => Ver problema caso passe o card para o proximo mas o proximo nao esteja carregado (fazer uma nova requisicao)
-// Implementar o sistema de busca
-// Criar filtros e ordenadores
+// Adicionar o restante das informações relevantes no card grande => descricao, expreriencia, egg, geracao (https://axlbr.github.io/js-developer-pokedex/)
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+// Fazer os ajustes de responsividade para desktop
+
+// Implementar o sistema de busca - se tiver menos de 151, executar um loop fazendo as requisicoes ate acabar tudo para ir exibindo o que esta de acordo
+// Criar filtros e ordenadores - ordena ou filtra somente o que foi carregado, e quando desce carrega mais e ja exibe filtrado ou ordenado
+// Aplicar responsividade para dar suporte a smartphone com a abordagem mobile-first
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import api from "./service/api";
 import Header from "./components/Header";
 import Buscador from "./components/Search";
 import SmallCard from "./components/SmallCard";
 import BigCard from "./components/BigCard";
+import Loading from "./components/Loading";
 import "./App.css";
 
 function App() {
@@ -18,8 +20,8 @@ function App() {
   const alreadyRendered = useRef<boolean>(false); // Evitar dupla chamada na API quando renderiza o componente
   const [pokemons, setPokemons] = useState<any[]>([]); // Lista contendo todos os pokemons com detalhes
   const [selected, setSelected] = useState<number>(0); // Posicao do pokemon selecionado dentro da lista
-  const [offset, setOffset] = useState<number>(0); // Valor dos proximos pokemons a serem chamados
-  const [isFixed, setIsFixed] = useState<boolean>(false); // Varifica se o card principal deve ser fixado
+  const [offset, setOffset] = useState<number>(0); // Valor dos proximos pokemons a serem chamados na API
+  const [isFixed, setIsFixed] = useState<boolean>(false); // Verifica se o card principal deve ser fixado
 
   // Funcao para chamar mais pokemons atraves da PokeAPI
   const requestPokemons = useCallback(async () => {
@@ -65,16 +67,26 @@ function App() {
     else if (window.scrollY <= 170) setIsFixed(() => false);
   }, [requestPokemons, setIsFixed, pokemons]);
 
-  // Funcao que pega o clic no card para selecionar um novo pokemon
+  // Funcao que pega o click no card para selecionar um novo pokemon
   const handleClickCard = (id: number): void => {
     setSelected(() => id - 1);
+  };
+
+  // Funcao que retrocede o pokemon selecionado para o anterior
+  const previousPokemon = () => {
+    if (selected > 0) setSelected((value) => value - 1);
+  };
+
+  // Funcao que avanca o pokemon selecionado para o proximo
+  const nextPokemon = () => {
+    if (selected < pokemons.length - 1) setSelected((value) => value + 1);
   };
 
   // Realizar a busca dos primeiros 10 pokemons com o load da pagina
   useEffect(() => {
     if (!alreadyRendered.current) requestPokemons();
     alreadyRendered.current = true;
-  }, []);
+  });
 
   // Realizar a manipulacao da funcao de scroll
   useEffect(() => {
@@ -102,10 +114,15 @@ function App() {
         </section>
         <aside className="pokemon">
           <div className={`card_pokemon ${isFixed ? "fixed" : "not-fixed"}`}>
-            <BigCard pokemon={pokemons[selected]} />
+            <BigCard
+              pokemon={pokemons[selected]}
+              nextPokemon={nextPokemon}
+              previousPokemon={previousPokemon}
+            />
           </div>
         </aside>
       </main>
+      {requesting && pokemons.length < 151 && <Loading />}
     </>
   );
 }

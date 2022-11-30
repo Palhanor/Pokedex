@@ -12,11 +12,13 @@ export default function SmallCard({
       onClick={() => handleClickCard(pokemon.id)}
     >
       <img
-        src={pokemon.sprites.front_default}
+        src={pokemon.sprites.other["official-artwork"].front_default}
         alt={`Imagem do ${pokemon.name}`}
       />
-      <h3>{pokemon.name}</h3>
-      <p>#{pokemon.id}</p>
+      <div className="name">
+        <h3>{pokemon.name}</h3>
+        <p>#{pokemon.id}</p>
+      </div>
       <div>
         {pokemon.types.map((data: any) => (
           <span key={data.type.name} className={`tag ${data.type.name}`}>

@@ -1,0 +1,20 @@
+.loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 4rem;
+  box-sizing: border-box;
+}
+
+.loading_icon {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

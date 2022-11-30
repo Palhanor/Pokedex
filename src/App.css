@@ -14,7 +14,7 @@
 }
 
 .cards {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   display: grid;
   column-gap: 30px;
   row-gap: 3.2rem;
@@ -111,4 +111,14 @@
 }
 .dragon {
   background-color: #9d7af7;
+}
+
+@media screen and (min-width: 1440px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .fixed {
+    top: 55px;
+  }
 }
