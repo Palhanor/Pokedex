@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 30px;
+  flex-direction: row;
+  width: 80vw;
+  margin: 3rem auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: rgb(146, 150, 161);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cards {
+  margin: 2rem 0;
+  display: grid;
+  column-gap: 30px;
+  row-gap: 3.2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokemon {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+  width: 26.3%;
+  top: 10px;
+}
+
+.not-fixed {
+  position: relative;
+  width: 100%;
+}
+
+.card_pokemon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0 1rem;
+  height: 80vh;
+  box-sizing: border-box;
+  margin: 5rem 0;
+  box-shadow: 4px 4px 22px rgb(226, 230, 237);
 }
 
-.App-link {
-  color: #61dafb;
-}
+/* DEFINICAO DAS TAGS */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tag {
+  margin: 0 5px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.grass {
+  background-color: #90c975;
+}
+.poison {
+  background-color: #a782a8;
+}
+.fire {
+  background-color: #f49958;
+}
+.flying {
+  background-color: #b9a9ea;
+}
+.water {
+  background-color: #91aeed;
+}
+.bug {
+  background-color: #b2b87b;
+}
+.normal {
+  background-color: #afae8a;
+}
+.electric {
+  background-color: #f6d647;
+}
+.ground {
+  background-color: #dfc88e;
+}
+.fighting {
+  background-color: #d97673;
+}
+.ghost {
+  background-color: #9d87bb;
+}
+.fairy {
+  background-color: #e29adf;
+}
+.psychic {
+  background-color: #f598b5;
+}
+.rock {
+  background-color: #b4a35f;
+}
+.steel {
+  background-color: #b8b8d0;
+}
+.ice {
+  background-color: #a4d7d7;
+}
+.dragon {
+  background-color: #9d7af7;
 }

@@ -1,0 +1,15 @@
+.header {
+  width: 80vw;
+  margin: 2rem auto;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-image: linear-gradient(172deg, rgb(237, 241, 245), #fff);
+  box-shadow: 4px 4px 12px rgba(216, 220, 227, 0.584), -4px -4px 12px #fff;
+}
+
+.header img {
+  width: 10rem;
+}

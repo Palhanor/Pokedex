@@ -1,0 +1,31 @@
+.card_container {
+  margin-top: -30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_container img {
+  height: 11rem;
+}
+
+.card_container h1 {
+  text-transform: capitalize;
+  font-size: 2rem;
+  margin: 0 10px 0 0;
+  display: inline;
+}
+
+.card_container .indice {
+  font-size: 1.2rem;
+  color: rgb(124, 124, 124);
+  display: inline;
+}
+
+.card_container .name {
+  margin: -1rem 0;
+}
+
+.card_container .tags {
+  margin: 2rem 0;
+}

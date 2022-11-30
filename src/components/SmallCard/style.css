@@ -1,0 +1,37 @@
+.card {
+  background-color: #fff;
+  height: 10.5rem;
+  border-radius: 15px;
+  box-shadow: 2px 2px 12px rgb(232, 233, 236);
+  cursor: pointer;
+  display: flex;
+  border: 2px solid #fff;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.1s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  margin-top: -20%;
+  height: 6rem;
+}
+
+.card h3 {
+  margin-top: -0.6rem;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.card p {
+  margin-top: -0.6rem;
+  font-size: 0.9rem;
+  color: rgb(124, 124, 124);
+}
+
+.selected {
+  border: 2px solid gold;
+}
