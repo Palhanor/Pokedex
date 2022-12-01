@@ -8,14 +8,14 @@ import { BiFemaleSign, BiMaleSign } from "react-icons/bi";
 import { AiFillTrophy } from "react-icons/ai";
 import "./style.css";
 
-type ITab = "about" | "stats" | "moves";
+type ITabs = "about" | "stats" | "moves";
 
 export default function BigCard({
   pokemon,
   nextPokemon,
   previousPokemon,
 }: IBigCardProps) {
-  const [activeTab, setActiveTab] = useState<ITab>("about"); // Armazena o estado atual da aba que esta ativa
+  const [activeTab, setActiveTab] = useState<ITabs>("about"); // Armazena o estado atual da aba que esta ativa
   const [pokemonsDetails, setPokemonDetails] = useState<any>({}); // Armazena o objeto contendo os dados adicionais do pokemons selecionado
 
   // Faz a requisicao dos dados adicionais do pokemon selecionado
@@ -73,6 +73,11 @@ export default function BigCard({
           </div>
           {activeTab === "about" && (
             <About
+              habitat={pokemonsDetails.habitat?.name}
+              abilities={pokemon.abilities}
+              generation={pokemonsDetails.generation.name
+                .replace("generation-", "")
+                .toUpperCase()}
               description={
                 pokemonsDetails.flavor_text_entries[
                   pokemonsDetails.flavor_text_entries
@@ -80,11 +85,6 @@ export default function BigCard({
                     .indexOf("en")
                 ].flavor_text
               }
-              habitat={pokemonsDetails.habitat.name}
-              generation={pokemonsDetails.generation.name
-                .replace("generation-", "")
-                .toUpperCase()}
-              abilities={pokemon.abilities}
             />
           )}
           {activeTab === "stats" && (

@@ -34,3 +34,8 @@ export interface IStatsProps {
     spDefense: number;
 }
 
+export interface ISearchProps {
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+

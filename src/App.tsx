@@ -1,14 +1,16 @@
-// Fazer os ajustes de responsividade para desktop
-// Implementar o sistema de busca
-// => se tiver menos de 151, executar um loop fazendo as requisicoes ate acabar tudo para ir exibindo o que esta de acordo
-
-// Criar filtros e ordenadores - ordena ou filtra somente o que foi carregado, e quando desce carrega mais e ja exibe filtrado ou ordenado
-// Aplicar responsividade para dar suporte a smartphone com a abordagem mobile-first
+// 1. Modificar todo o idioma para ingles (variaveis, funcoes, componentes, hooks...)
+// 2. Refatorar o sistema para simplificar os codigos
+// 3. Fazer os ajustes de responsividade para desktop
+/* AVANÇADO */
+// 4. Aplicar classes (Pokemon, PokemonDetails) para formatar os dados vindos da API
+// 5. Aplicar estilização através do Styled-Components
+// 6. Criar filtros e ordenadores - ordena ou filtra somente o que foi carregado, e quando desce carrega mais e ja exibe filtrado ou ordenado
+// 7. Aplicar responsividade para dar suporte a smartphone com a abordagem mobile-first
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import api from "./service/api";
 import Header from "./components/Header";
-import Buscador from "./components/Search";
+import Search from "./components/Search";
 import SmallCard from "./components/SmallCard";
 import BigCard from "./components/BigCard";
 import Loading from "./components/Loading";
@@ -21,6 +23,7 @@ function App() {
   const [selected, setSelected] = useState<number>(0); // Posicao do pokemon selecionado dentro da lista
   const [offset, setOffset] = useState<number>(0); // Valor dos proximos pokemons a serem chamados na API
   const [isFixed, setIsFixed] = useState<boolean>(false); // Verifica se o card principal deve ser fixado
+  const [search, setSearch] = useState<string>(""); // Valor do input de busca por pokemons
 
   // Funcao para chamar mais pokemons atraves da PokeAPI
   const requestPokemons = useCallback(async () => {
@@ -34,8 +37,7 @@ function App() {
       const daitailedPokemonList: any[] = [];
       for (let i = 0; i < resultPokemons.length; i++) {
         const detailsPokemon = await api.get(`/${resultPokemons[i].name}`);
-        if (detailsPokemon.data.id <= 151)
-          daitailedPokemonList.push(detailsPokemon.data);
+        daitailedPokemonList.push(detailsPokemon.data);
       }
       setPokemons((currentPokemons) => [
         ...currentPokemons,
@@ -55,12 +57,7 @@ function App() {
       Math.ceil(window.innerHeight + window.scrollY) >=
       document.documentElement.scrollHeight;
     const numberOfPokemons = pokemons.length;
-    if (
-      touchBottom &&
-      numberOfPokemons > 0 &&
-      numberOfPokemons < 151 &&
-      !requesting.current
-    )
+    if (touchBottom && numberOfPokemons > 0 && !requesting.current)
       requestPokemons();
     // Fixa ou libera o card grande dependendo da posição do scroll
     if (window.scrollY > 170) setIsFixed(() => true);
@@ -99,17 +96,23 @@ function App() {
       <Header />
       <main className="main">
         <section>
-          <Buscador />
-          <h2 className="title">Lista de Pokemons</h2>
+          <Search search={search} setSearch={setSearch} />
+          <h2 className="title">List of Pokemons</h2>
           <ol className="cards">
-            {pokemons.map((pokemon) => (
-              <SmallCard
-                key={pokemon.id}
-                pokemon={pokemon}
-                selected={selected}
-                handleClickCard={handleClickCard}
-              />
-            ))}
+            {pokemons.map((pokemon) => {
+              if (
+                pokemon.name.includes(search.toLowerCase()) ||
+                pokemon.id === Number(search)
+              )
+                return (
+                  <SmallCard
+                    key={pokemon.id}
+                    pokemon={pokemon}
+                    selected={selected}
+                    handleClickCard={handleClickCard}
+                  />
+                );
+            })}
           </ol>
         </section>
         <aside className="pokemon">
@@ -122,7 +125,7 @@ function App() {
           </div>
         </aside>
       </main>
-      {requesting && pokemons.length < 151 && <Loading />}
+      {requesting && <Loading />}
     </>
   );
 }

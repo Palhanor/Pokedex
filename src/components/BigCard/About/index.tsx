@@ -8,14 +8,14 @@ export default function About({
 }: IAboutProps) {
   return (
     <div className="about">
-      <p className="description">{description}</p>
+      <p className="description">{description.replace("\u000c", " ")}</p>
       <div className="info">
         <div>
           <p>
             Generation: <span>{generation}</span>
           </p>
           <p>
-            Habitat: <span>{habitat}</span>
+            Habitat: <span>{habitat ? habitat : ""}</span>
           </p>
         </div>
         <div>
