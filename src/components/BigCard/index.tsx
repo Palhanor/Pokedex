@@ -7,7 +7,6 @@ import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import { BiFemaleSign, BiMaleSign } from "react-icons/bi";
 import { AiFillTrophy } from "react-icons/ai";
 import "./style.css";
-
 type ITabs = "about" | "stats" | "moves";
 
 export default function BigCard({
@@ -20,8 +19,18 @@ export default function BigCard({
 
   // Faz a requisicao dos dados adicionais do pokemon selecionado
   const requestPokemonDetails = async () => {
+    /*
+      O valor de pokemon é recebido como undefined, então ele não consegue pegar o index nem consegue atribuir os 
+      valores adicionais (description, generation, habitat, capture, gender e legendary) dentro do objeto pokemon
+      instanciado da classe Pokemon. Caso eu conseguisse solucionar isso, simplificaria muito todas as declarações
+      destes atributos, e ainda ajudaria com a contrução de uma navegação entre os pokemons filtrados... Tanto é
+      verdade que eu inclusive precisei encapsular quase todo o componente numa condição de exibição apenas caso
+      haja um pokemon. Uma solução é criar contextos globais para pokemons e selected.
+    */
     const axiosResponse = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon-species/${pokemon ? pokemon.id : 1}/`
+      `https://pokeapi.co/api/v2/pokemon-species/${
+        pokemon ? pokemon.index : 1
+      }/`
     );
     setPokemonDetails(() => axiosResponse.data);
   };
@@ -35,18 +44,15 @@ export default function BigCard({
     <div className="card_container">
       {pokemon && (
         <>
-          <img
-            src={pokemon.sprites.other["official-artwork"].front_default}
-            alt={`${pokemon.name}`}
-          />
+          <img src={pokemon.image} alt={`${pokemon.name}`} />
           <div className="name">
             <h1>{pokemon.name}</h1>
-            <p className="index">#{pokemon.id}</p>
+            <p className="index">#{pokemon.index}</p>
           </div>
           <div className="tags">
-            {pokemon.types.map((data: any) => (
-              <span key={data.type.name} className={`tag ${data.type.name}`}>
-                {data.type.name}
+            {pokemon.types.map((type: string) => (
+              <span key={type} className={`tag ${type}`}>
+                {type}
               </span>
             ))}
           </div>
@@ -88,22 +94,22 @@ export default function BigCard({
           )}
           {activeTab === "stats" && (
             <Stats
-              xp={pokemon.base_experience}
-              height={pokemon.height}
-              weight={pokemon.weight}
+              xp={pokemon.xp}
+              height={pokemon.getHeight()}
+              weight={pokemon.getWeight()}
               capture={pokemonsDetails.capture_rate}
-              hp={pokemon.stats[0].base_stat}
-              attack={pokemon.stats[1].base_stat}
-              defense={pokemon.stats[2].base_stat}
-              speed={pokemon.stats[5].base_stat}
-              spAttack={pokemon.stats[3].base_stat}
-              spDefense={pokemon.stats[4].base_stat}
+              hp={pokemon.hp}
+              attack={pokemon.attack}
+              defense={pokemon.defense}
+              speed={pokemon.speed}
+              spAttack={pokemon.spAttack}
+              spDefense={pokemon.spDefense}
             />
           )}
           {activeTab === "moves" && (
             <div className="moves">
-              {pokemon.moves.map((value: any) => (
-                <span key={value.move.name}>{value.move.name}</span>
+              {pokemon.moves.map((move: string) => (
+                <span key={move}>{move}</span>
               ))}
             </div>
           )}

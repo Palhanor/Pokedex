@@ -8,21 +8,18 @@ export default function SmallCard({
 }: ISmallCardProps) {
   return (
     <li
-      className={`card ${pokemon.id - 1 === selected ? "selected" : ""}`}
-      onClick={() => handleClickCard(pokemon.id)}
+      className={`card ${pokemon.index - 1 === selected ? "selected" : ""}`}
+      onClick={() => handleClickCard(pokemon.index)}
     >
-      <img
-        src={pokemon.sprites.other["official-artwork"].front_default}
-        alt={`${pokemon.name}`}
-      />
+      <img src={pokemon.image} alt={`${pokemon.name}`} />
       <div className="name">
         <h3>{pokemon.name}</h3>
-        <p>#{pokemon.id}</p>
+        <p>#{pokemon.index}</p>
       </div>
       <div>
-        {pokemon.types.map((data: any) => (
-          <span key={data.type.name} className={`tag ${data.type.name}`}>
-            {data.type.name}
+        {pokemon.types.map((type: string) => (
+          <span key={type} className={`tag ${type}`}>
+            {type}
           </span>
         ))}
       </div>

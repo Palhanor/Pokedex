@@ -6,12 +6,10 @@
 
 ## Próximos passos
 
-1. Mais para frente eu poderia passar todos os estilos para Styled Components, ou ao menos para o SCSS. Mas por enquanto eu estou achando melhor desenvolver com CSS puro mesmo!
-2. Além disso, eu preciso fazer a passagem de pokemons ser referente a lista que esta sendo exibida, e não a lista completa. Mas existem alguns problemas:
-   * Quando carrega, tem sempre que começar com o pokemon de ID 1 - Isso em si não é o problema, mas se quando carregar eu já mudar para um novo filtro, vou precisar atualizar o selected para o primeiro da nova lista filtrada, mas eu não vou ter acesso ao ID dele logo de cara, enquanto eu sempre sei que no geral o ID vai ser 1. O sistema precisaria entao trabalhar com o indice do objeto no array, e nao mais com seu ID.
-   * Além disso, vou precisar de um outro state com um array contendo os pokemons filtrados, o que geraria duplicação de dados e muita reenderização toda vez que o input ou o filtro mudasse.
-   * Por fim, se for feita uma busca que nao tiver resultado, simplesmente nao vai dar para exibir nada no card, e ai o sistema vai dar uma quebrada... Tavez nesse caso tivesse que gerar uma permanencia do ultimo pokemon exibido...
-3. Ah, e eu tenho que pensar em um redesign para a versão mobile e quebrar a cabeça para fazer os ajustes no design e na dinâmica necessários para essa mídia em questão. Mas eu realmente não tenho nenhuma ideia agora, até por que eu be baseei em um design feito para desktop, então não pensei muito mobile-first para esse projeto em questão... Infelizmente.
+1. Eu integrar os campos de detalhes, geração, habitat, captura, genero e lendario dentro do objeto pokemon instanciado da classe Pokemon, mas como a requisição é feita antes de receber o objeto, quebra tudo quando tento declarar o pokemon.setDescription... Outra opção seria criar outra classe, como PokeDetails que vai instanciar um objeto que vai ser usado para manipular os valores adicionais. Ah, e tamb´´em daria para ter um contexto global através do useContext que salvaria a lista de pokemons e o selected, assim todos os componentes teriam acesso sem precisar esperar chegar através de params.
+2. Preciso também fazer a passagem de pokemons ser referente a lista que esta sendo exibida, e não a lista completa. Quando filtrasse teria que manter o que esta selecionado atualmente, mas ao clicar em qualquer pokemon, ao pressionar em anterior ou proximo teria que navegar entre aqueles atualmente aparecendo nos cards. Mas sso poderia gerar uma duplicacao de lista, e tambem iria querer uma mudanca na forma de selecao, pois o pokemon selecionado nao seria mais pelo id, mas sim pela posicao na lista exibida.
+3. E eu ainda tenho que pensar em um redesign para a versão mobile e quebrar a cabeça para fazer os ajustes no design e na dinâmica necessários para essa mídia em questão. Mas eu realmente não tenho nenhuma ideia agora, até por que eu be baseei em um design feito para desktop, então não pensei muito mobile-first para esse projeto em questão... Infelizmente.
+4. Mais para frente eu poderia passar todos os estilos para Styled Components, ou ao menos para o SCSS. Mas por enquanto eu estou achando melhor desenvolver com CSS puro mesmo!
 
 ## Créditos
 

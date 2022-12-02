@@ -25,10 +25,10 @@ export default function Stats({
           Speed: <span>{speed}</span>
         </p>
         <p>
-          Height: <span>{height / 10} m</span>
+          Height: <span>{height}</span>
         </p>
         <p>
-          Weight: <span>{weight} Kg</span>
+          Weight: <span>{weight}</span>
         </p>
       </div>
       <div>

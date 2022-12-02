@@ -61,7 +61,6 @@
 .card_container .about .info ol {
   padding: 0 0 0 12px;
   margin: 0.4rem 0;
-  font-size: 0.9rem;
   font-weight: 400;
   color: rgb(67, 67, 67);
 }
@@ -84,9 +83,6 @@
 
 .card_container .about {
   flex-direction: column;
-}
-
-.card_container .about {
   margin: 0.5rem;
 }
 
@@ -163,7 +159,6 @@
   width: 50%;
   padding: 0.6rem;
   border: none;
-  font-size: 1.1rem;
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -192,24 +187,97 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
   position: absolute;
+}
+
+.male,
+.female,
+.legendary {
+  right: 25px;
+}
+
+.male,
+.female {
+  top: 25px;
 }
 
 .male {
   border: 2px solid #727ec2;
-  top: 25px;
-  right: 15px;
 }
 
 .female {
   border: 2px solid #c470a4;
-  top: 25px;
-  right: 15px;
 }
 
 .legendary {
   border: 2px solid #ffd900bb;
   top: 70px;
-  right: 15px;
+}
+
+@media screen and (min-width: 1440px) {
+  .card_container {
+    margin-top: -15%;
+  }
+  .card_container img {
+    max-height: 10rem;
+  }
+  .card_container h1 {
+    font-size: 2rem;
+  }
+  .card_container .name {
+    margin: 0.8rem 0 0.4rem;
+  }
+  .card_container .menu {
+    margin-top: 2.6rem;
+  }
+  .card_container .menu p {
+    padding: 0.8rem 2.2rem;
+  }
+  .card_container .stats,
+  .card_container .about {
+    margin: 1.2rem 0 0 0;
+    width: 80%;
+  }
+  .card_container .moves {
+    height: 14rem;
+    margin-top: 2rem;
+    row-gap: 10px;
+  }
+  .card_container .about .description {
+    font-size: 1rem;
+  }
+  .card_container .stats p,
+  .card_container .about p {
+    margin: 0.8rem 0 0 0;
+    font-size: 1rem;
+  }
+  .card_container .moves span {
+    font-size: 0.9rem;
+  }
+  .card_container .about .info ol {
+    margin: 0.6rem 0;
+    font-weight: 600;
+  }
+  .card_container .about .info li {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.8rem;
+  }
+  .controls button {
+    padding: 1rem;
+  }
+  .emblem {
+    width: 42px;
+    height: 42px;
+  }
+  .emblem svg {
+    transform: scale(1.25);
+  }
+  .male,
+  .female,
+  .legendary {
+    right: 30px;
+  }
+  .legendary {
+    top: 80px;
+  }
 }

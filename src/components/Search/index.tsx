@@ -49,7 +49,7 @@ export default function Search({
           onChange={(e) => setFilter(() => e.target.value)}
           defaultValue={filter}
         >
-          {types.map((type) => (
+          {types.map((type: string) => (
             <option key={type} value={type}>
               {type.toUpperCase()}
             </option>

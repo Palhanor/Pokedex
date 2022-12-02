@@ -1,8 +1,8 @@
-// 1. Aplicar classes (Pokemon, PokemonDetails) para formatar os dados vindos da API
-// 3. Fazer os ajustes de responsividade para desktop - justar todos os dados no card grande
+// 1. Fazer os ajustes de responsividade para desktop - justar todos os dados no card grande
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import api from "./service/api";
+import Pokemon from "./interfaces/Pokemon";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import SmallCard from "./components/SmallCard";
@@ -13,8 +13,8 @@ import "./App.css";
 function App() {
   const requesting = useRef<boolean>(false); // Impedir disparo de novas requisições enquanto uma esta sendo realizada
   const alreadyRendered = useRef<boolean>(false); // Evitar dupla chamada na API quando renderiza o componente
-  const [pokemons, setPokemons] = useState<any[]>([]); // Lista contendo todos os pokemons com detalhes
-  const [selected, setSelected] = useState<number>(0); // Posicao do pokemon selecionado dentro da lista
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]); // Lista contendo todos os pokemons com detalhes
+  const [selected, setSelected] = useState<number>(0); // Posicao do pokemon selecionado dentro da lista (index - 1)
   const [offset, setOffset] = useState<number>(0); // Valor dos proximos pokemons a serem chamados na API
   const [isFixed, setIsFixed] = useState<boolean>(false); // Verifica se o card principal deve ser fixado
   const [search, setSearch] = useState<string>(""); // Valor do input de busca por pokemons
@@ -23,15 +23,31 @@ function App() {
   // Funcao para chamar mais pokemons atraves da PokeAPI
   const requestPokemons = useCallback(async () => {
     try {
-      // Pega os nomes dos proximos dez pokemons
       requesting.current = true;
       const responsePokemons = await api.get(`?offset=${offset}&limit=10`);
       const resultPokemons = responsePokemons.data.results;
-      // Pegar os dados individuais de cada pokemon
-      const daitailedPokemonList: any[] = [];
+      const daitailedPokemonList: Pokemon[] = [];
       for (let i = 0; i < resultPokemons.length; i++) {
         const detailsPokemon = await api.get(`/${resultPokemons[i].name}`);
-        daitailedPokemonList.push(detailsPokemon.data);
+        const pokeInfo = detailsPokemon.data;
+        const pokemon = new Pokemon(
+          pokeInfo.name,
+          pokeInfo.sprites.other["official-artwork"].front_default,
+          pokeInfo.id,
+          pokeInfo.base_experience,
+          pokeInfo.height,
+          pokeInfo.weight,
+          pokeInfo.stats[0].base_stat,
+          pokeInfo.stats[1].base_stat,
+          pokeInfo.stats[2].base_stat,
+          pokeInfo.stats[3].base_stat,
+          pokeInfo.stats[4].base_stat,
+          pokeInfo.stats[5].base_stat,
+          pokeInfo.types.map((data: any) => data.type.name),
+          pokeInfo.abilities.map((data: any) => data.ability.name),
+          pokeInfo.moves.map((data: any) => data.move.name)
+        );
+        daitailedPokemonList.push(pokemon);
       }
       setPokemons((currentPokemons) => [
         ...currentPokemons,
@@ -46,21 +62,19 @@ function App() {
 
   // Funcao para verificar o scroll na pagina
   const handleScroll = useCallback(() => {
-    // Chama a função buscar quando chega no fundo da página
     const touchBottom =
       Math.ceil(window.innerHeight + window.scrollY) >=
       document.documentElement.scrollHeight;
     const numberOfPokemons = pokemons.length;
     if (touchBottom && numberOfPokemons > 0 && !requesting.current)
       requestPokemons();
-    // Fixa ou libera o card grande dependendo da posição do scroll
     if (window.scrollY > 170) setIsFixed(() => true);
     else if (window.scrollY <= 170) setIsFixed(() => false);
   }, [requestPokemons, setIsFixed, pokemons]);
 
   // Funcao que pega o click no card para selecionar um novo pokemon
-  const handleClickCard = (id: number): void => {
-    setSelected(() => id - 1);
+  const handleClickCard = (index: number): void => {
+    setSelected(() => index - 1);
   };
 
   // Funcao que retrocede o pokemon selecionado para o anterior
@@ -98,18 +112,15 @@ function App() {
           />
           <h2 className="title">List of Pokemons</h2>
           <ol className="cards">
-            {pokemons.map((pokemon) => {
+            {pokemons.map((pokemon: Pokemon) => {
               if (
                 (pokemon.name.includes(search.toLowerCase()) ||
-                  pokemon.id === Number(search)) &&
-                (pokemon.types
-                  .map((type: any) => type.type.name)
-                  .includes(filter) ||
-                  filter === "all")
+                  pokemon.index === Number(search)) &&
+                (pokemon.types.includes(filter) || filter === "all")
               )
                 return (
                   <SmallCard
-                    key={pokemon.id}
+                    key={pokemon.index}
                     pokemon={pokemon}
                     selected={selected}
                     handleClickCard={handleClickCard}

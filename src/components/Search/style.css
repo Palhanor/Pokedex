@@ -55,3 +55,9 @@
   border-radius: 5px;
   box-shadow: 4px 4px 18px rgba(216, 220, 227, 0.302);
 }
+
+@media screen and (min-width: 1440px) {
+  .filter select {
+    padding: 1rem;
+  }
+}

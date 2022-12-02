@@ -21,8 +21,8 @@ export default function About({
         <div>
           <p>Abilities</p>
           <ol>
-            {abilities.map((value: any) => (
-              <li key={value.ability.name}>{value.ability.name}</li>
+            {abilities.map((ability: string) => (
+              <li key={ability}>{ability}</li>
             ))}
           </ol>
         </div>

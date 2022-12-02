@@ -1,11 +1,13 @@
+import Pokemon from "./Pokemon";
+
 export interface ISmallCardProps {
-    pokemon: any;
+    pokemon: Pokemon;
     selected: number;
-    handleClickCard: (id: number) => void;
+    handleClickCard: (index: number) => void;
 }
 
 export interface IBigCardProps {
-    pokemon: any;
+    pokemon: Pokemon;
     nextPokemon: () => void;
     previousPokemon: () => void;
 }
@@ -14,17 +16,13 @@ export interface IAboutProps {
     description: string;
     generation: string;
     habitat: string;
-    abilities: {
-        ability: {
-            name: string;
-        };
-    }[];
+    abilities: string[];
 }
 
 export interface IStatsProps {
     xp: number;
-    height: number;
-    weight: number;
+    height: string;
+    weight: string;
     capture: number;
     hp: number;
     attack: number;
