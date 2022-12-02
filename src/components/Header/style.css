@@ -14,7 +14,7 @@
   width: 10rem;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1920px) {
   .header {
     padding: 1.5rem;
   }

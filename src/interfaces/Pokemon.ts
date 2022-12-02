@@ -61,10 +61,6 @@ class Pokemon {
     getWeight() {
         return `${this.weight} Kg`
     }
-
-    // setDescription(description: string) {
-    //     this.description = description
-    // }
 }
 
 export default Pokemon;

@@ -1,5 +1,3 @@
-// 1. Fazer os ajustes de responsividade para desktop - justar todos os dados no card grande
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import api from "./service/api";
 import Pokemon from "./interfaces/Pokemon";
@@ -113,10 +111,13 @@ function App() {
           <h2 className="title">List of Pokemons</h2>
           <ol className="cards">
             {pokemons.map((pokemon: Pokemon) => {
+              const searchingName = pokemon.name.includes(search.toLowerCase());
+              const searchingIndex = pokemon.index === Number(search);
+              const filteringType = pokemon.types.includes(filter);
+              const typeIsAll = filter === "all";
               if (
-                (pokemon.name.includes(search.toLowerCase()) ||
-                  pokemon.index === Number(search)) &&
-                (pokemon.types.includes(filter) || filter === "all")
+                (searchingName || searchingIndex) &&
+                (filteringType || typeIsAll)
               )
                 return (
                   <SmallCard

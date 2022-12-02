@@ -43,7 +43,7 @@
   background-position: -160% -620%;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1920px) {
   .card {
     background-position: -100% -420%;
   }
