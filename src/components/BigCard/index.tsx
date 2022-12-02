@@ -20,7 +20,6 @@ export default function BigCard({
 
   // Faz a requisicao dos dados adicionais do pokemon selecionado
   const requestPokemonDetails = async () => {
-    console.log("fazendo requisicao");
     const axiosResponse = await axios.get(
       `https://pokeapi.co/api/v2/pokemon-species/${pokemon ? pokemon.id : 1}/`
     );
@@ -38,11 +37,11 @@ export default function BigCard({
         <>
           <img
             src={pokemon.sprites.other["official-artwork"].front_default}
-            alt={`Imagem do ${pokemon.name}`}
+            alt={`${pokemon.name}`}
           />
           <div className="name">
             <h1>{pokemon.name}</h1>
-            <p className="indice">#{pokemon.id}</p>
+            <p className="index">#{pokemon.id}</p>
           </div>
           <div className="tags">
             {pokemon.types.map((data: any) => (
@@ -116,7 +115,7 @@ export default function BigCard({
               <FiArrowRight size={30} color="#FFF" />
             </button>
           </div>
-          <div className="emblems">
+          <div>
             <div
               className={`emblem ${
                 pokemonsDetails.gender_rate === 8 ? "female" : "male"

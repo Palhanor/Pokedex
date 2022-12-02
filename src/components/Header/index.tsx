@@ -6,7 +6,7 @@ export default function Header() {
       <a href="/">
         <img
           src={require("../../assets/pokedex.png")}
-          alt="Logo da Pokedex"
+          alt="Pokedex logo"
         />
       </a>
     </header>

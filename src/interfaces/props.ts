@@ -36,6 +36,8 @@ export interface IStatsProps {
 
 export interface ISearchProps {
     search: string;
+    filter: string;
     setSearch: React.Dispatch<React.SetStateAction<string>>;
+    setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 

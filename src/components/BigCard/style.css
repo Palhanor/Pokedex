@@ -16,7 +16,7 @@
   display: inline;
 }
 
-.card_container .indice {
+.card_container .index {
   font-size: 1.2rem;
   color: rgb(124, 124, 124);
   display: inline;
@@ -184,13 +184,7 @@
   background-color: #8ea0ba;
 }
 
-.emblems {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-.emblems div {
+.emblem {
   border-radius: 50%;
   width: 32px;
   height: 32px;

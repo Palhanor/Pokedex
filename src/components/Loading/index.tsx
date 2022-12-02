@@ -4,7 +4,7 @@ import "./style.css";
 export default function Loading() {
   return (
     <div className="loading">
-      <BiLoader color="#e80b3e" size={40} className="loading_icon" />
+      <BiLoader color="#e80b3e" size={40} />
     </div>
   );
 }

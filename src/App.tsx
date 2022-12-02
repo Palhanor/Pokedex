@@ -1,11 +1,5 @@
-// 1. Modificar todo o idioma para ingles (variaveis, funcoes, componentes, hooks...)
-// 2. Refatorar o sistema para simplificar os codigos
-// 3. Fazer os ajustes de responsividade para desktop
-/* AVANÇADO */
-// 4. Aplicar classes (Pokemon, PokemonDetails) para formatar os dados vindos da API
-// 5. Aplicar estilização através do Styled-Components
-// 6. Criar filtros e ordenadores - ordena ou filtra somente o que foi carregado, e quando desce carrega mais e ja exibe filtrado ou ordenado
-// 7. Aplicar responsividade para dar suporte a smartphone com a abordagem mobile-first
+// 1. Aplicar classes (Pokemon, PokemonDetails) para formatar os dados vindos da API
+// 3. Fazer os ajustes de responsividade para desktop - justar todos os dados no card grande
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import api from "./service/api";
@@ -24,10 +18,10 @@ function App() {
   const [offset, setOffset] = useState<number>(0); // Valor dos proximos pokemons a serem chamados na API
   const [isFixed, setIsFixed] = useState<boolean>(false); // Verifica se o card principal deve ser fixado
   const [search, setSearch] = useState<string>(""); // Valor do input de busca por pokemons
+  const [filter, setFilter] = useState<string>("all"); // Valor do filtro de tags dos pokemons
 
   // Funcao para chamar mais pokemons atraves da PokeAPI
   const requestPokemons = useCallback(async () => {
-    // console.log("fazendo requisicao geral")
     try {
       // Pega os nomes dos proximos dez pokemons
       requesting.current = true;
@@ -96,13 +90,22 @@ function App() {
       <Header />
       <main className="main">
         <section>
-          <Search search={search} setSearch={setSearch} />
+          <Search
+            search={search}
+            setSearch={setSearch}
+            filter={filter}
+            setFilter={setFilter}
+          />
           <h2 className="title">List of Pokemons</h2>
           <ol className="cards">
             {pokemons.map((pokemon) => {
               if (
-                pokemon.name.includes(search.toLowerCase()) ||
-                pokemon.id === Number(search)
+                (pokemon.name.includes(search.toLowerCase()) ||
+                  pokemon.id === Number(search)) &&
+                (pokemon.types
+                  .map((type: any) => type.type.name)
+                  .includes(filter) ||
+                  filter === "all")
               )
                 return (
                   <SmallCard

@@ -13,7 +13,7 @@ export default function SmallCard({
     >
       <img
         src={pokemon.sprites.other["official-artwork"].front_default}
-        alt={`Imagem do ${pokemon.name}`}
+        alt={`${pokemon.name}`}
       />
       <div className="name">
         <h3>{pokemon.name}</h3>
