@@ -1,31 +1,46 @@
-# Pokedex
-Acredito que quase todo mundo conhece o anime chamada Pokemon, e ainda, que quase todo desenvolvedor front-end já ao menos ouviu falar do [PokeAPI](https://pokeapi.co/) e já pensou em fazer um projeto de Pokedex para treinar suas habilidades de desenvolvimento com consumo de dados de APIs de terceiros. Então, comigo não foi diferente, e eu sempre pensei em fazer este projeto front-end, mas sem nunca sentir uma real motivação, até me aparecer o [Bootcamp Orange Tech +](https://web.dio.me/track/81278323-8916-401b-8446-03118eaff280) da DIO, cujo estabeleceu como um de seus desafios de projeto este mesmo referente à Pokedex suprida pale PokeAPI.
+<h1 align="center">Pokedex</h1>
 
-Assim, este é o resultado de alguns dias de esforço para desenvolver uma interface amigável, sofisticada e bastante completa em termos de informações e opções de navegação e personalização entre os dados obtidos através do consumo da referida API.
+## Sobre o Pokedex
+
+Este projeto foi elaborado como um desafio proposto através do [Bootcamp Orange Tech +](https://web.dio.me/track/81278323-8916-401b-8446-03118eaff280) da DIO, tendo como objetivo realizar o consumo de uma API externa, sendo esta a [PokeAPI](https://pokeapi.co/).
+
+Por este ser um projeto já bastante conhecido no mundo Front-end, eu resolvi tentar me diferenciar um pouco dando o melhor de mim para construir uma interface elegante e sofisticada, baseada na [interface](https://www.behance.net/gallery/113562309/Pokemon-Pokedex-Website-Redesign-Concept?tracking_source=search_projects%7CPokedex) do [AC1 Design](https://www.behance.net/angioletto1e90).
+
+Atualmente as requisições são realizadas através de um sistema de scroll infinito, cobrindo todas as gerarções disponíveis de Pokemons. Ainda, existem filtros para os tipos de Pokemon, assim como um sistema de busca por nome ou ID. Por fim, é possível selecionar e visualizar os Pokemons através de um card lateral flutiante que acompanha o scroll sobre a tela, e através deste mesmo card é possível avançar ou retroceder navegando entres os Pokemons já carregados.
 
 ---
 
-## Projeto
-Este projeto foi criado usando React e TypeScript, e até o momento para a estilização está sendo adotado o CSS padrão, mas com a possibilidade de ser modificado para o Styled-Components nas próximas atualizações.
+## Tecnologias
 
-Atualmente o sistema conta com um sistema de rolagem infinita suportado pela biblioteca Axios que faz as requisições para a PokeAPI, assim como um sistema de filtros por tipos de pokemons e busca por nome ou ID. Ainda, é possível selecionar um dos diversos pokemons para observar mais informações sobre este no card lateral que acompanha a navegação vertical do usuário, e tem informações gerais sobre o pokemon, dados de estatisticas e os movimentos deste mesmo pokemon. Ainda, para modelar os dados dos pokemons, é usada a classe Pokemon, que contêm todos os dados necessários para os objetos que serão trabalhados no sistema.
+<p align="left">
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
+<img src="https://img.shields.io/badge/axios-ffffff?style=for-the-badge&logo=axios&logoColor=5A29E4" alt="Axios">
+</p>
 
 ---
 
 ## Próximos passos
 
-1. Integrar os campos de detalhes, geração, habitat, captura, genero e lendario dentro do objeto pokemon instanciado da classe Pokemon, mas como a requisição é feita antes de receber o objeto, quebra tudo quando tento declarar o pokemon.setDescription... Outra opção seria criar outra classe, como PokeDetails que vai instanciar um objeto que vai ser usado para manipular os valores adicionais. Ah, e tamb´´em daria para ter um contexto global através do useContext que salvaria a lista de pokemons e o selected, assim todos os componentes teriam acesso sem precisar esperar chegar através de params.
-2. Fazer a passagem de pokemons ser referente a lista que esta sendo exibida, e não a lista completa. Quando filtrasse teria que manter o que esta selecionado atualmente, mas ao clicar em qualquer pokemon, ao pressionar em anterior ou proximo teria que navegar entre aqueles atualmente aparecendo nos cards. Mas sso poderia gerar uma duplicacao de lista, e tambem iria querer uma mudanca na forma de selecao, pois o pokemon selecionado nao seria mais pelo id, mas sim pela posicao na lista exibida.
-3. Elaborar um redesign para a versão mobile e quebrar a cabeça para fazer os ajustes no design e na dinâmica necessários para essas mídias móveis. Mas eu realmente não tenho nenhuma ideia agora, até por que eu be baseei em um design feito para desktop, então não pensei muito mobile-first para esse projeto em questão... Infelizmente.
+- [ ] Passar a estilização do CSS puro para alguma biblioteca como o Styled Components ou o Tailwinds.
+- [ ] Aplicar responsividade com a adoção de uma nova interface para a versão mobile.
+- [ ] Puxar os dados de detalhes, geração, habitat, captura, gênero e lendário para o momento de instanciar cada Pokemon, através de uma nova requisição (está dando erro por ser assíncrono).
+- [ ] Adicionar um contexto global através do useContext ou outra biblioteca (Redux ou Recoil), para salvar os dados dos pokemons e o pokemons selecionado.
+- [ ] Fazer com que a passagem de Pokemopns seja referente à lista exibido, e não à lista geral (para casos de filtro ou busca).
+- [ ] Fazer uma nova requisição quando o usuário for passando os Pokemons até o último atualmente carregado.
+- [ ] Ver se existe alguma forma de mitigar o problema de requisições em grupos de 10, para que a filtragem e busca não retorne poucos Pokemons.
 
 ---
 
 ## Créditos
 
-* [AC1 Design](https://www.behance.net/angioletto1e90), criador do [design](https://www.behance.net/gallery/113562309/Pokemon-Pokedex-Website-Redesign-Concept?tracking_source=search_projects%7CPokedex) usado como base para a construção da interface.
-* [Darius Dan](https://www.flaticon.com/authors/darius-dan), autor da [ilustração](https://www.flaticon.com/free-icon/pokeball_743977?term=pokeball&page=1&position=6&page=1&position=6&related_id=743977&origin=tag) usada como ícone do site.
+[AC1 Design](https://www.behance.net/angioletto1e90), criador da [UI](https://www.behance.net/gallery/113562309/Pokemon-Pokedex-Website-Redesign-Concept?tracking_source=search_projects%7CPokedex) usado como base para a construção da interface.
+
+[Darius Dan](https://www.flaticon.com/authors/darius-dan), autor da [ilustração](https://www.flaticon.com/free-icon/pokeball_743977?term=pokeball&page=1&position=6&page=1&position=6&related_id=743977&origin=tag) usada como ícone do site.
 
 ---
 
-## Imagem
+## Referência Visual
+
 ![Imagem da tela final](./src/assets/screenshot.png)
